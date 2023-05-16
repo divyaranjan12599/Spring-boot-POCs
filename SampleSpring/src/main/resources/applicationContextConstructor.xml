@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<beans  
+    xmlns="http://www.springframework.org/schema/beans"  
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+    xmlns:p="http://www.springframework.org/schema/p"  
+    xsi:schemaLocation="http://www.springframework.org/schema/beans  
+                http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">  
+  
+	<!-- <bean id="a1" class="depInjconstructor.Address">  
+		<constructor-arg value="Indore"></constructor-arg>  
+		<constructor-arg value="MP"></constructor-arg>  
+		<constructor-arg value="India"></constructor-arg>  
+	</bean> --> 
+	  
+	<bean id="e1" class="depInjconstructor.Employee">  
+		<constructor-arg value="10" type="int"></constructor-arg>  
+		<constructor-arg value="Divyaranjan"></constructor-arg>  
+		<constructor-arg>  
+			<!-- <ref bean="a1"/> -->  
+			<bean id="a1" class="depInjconstructor.Address">  
+				<constructor-arg value="Indore"></constructor-arg>  
+				<constructor-arg value="MP"></constructor-arg>  
+				<constructor-arg value="India"></constructor-arg>  
+			</bean>
+		</constructor-arg> 
+	</bean>  
+	
+	<bean id="a2" class="depInjconstructor.Address">  
+		<constructor-arg value="Kokapet"></constructor-arg>  
+		<constructor-arg value="Hyderabad"></constructor-arg>  
+		<constructor-arg value="India"></constructor-arg>  
+	</bean> 
+	  
+	<bean id="e2" class="depInjconstructor.Employee">  
+		<constructor-arg value="11" type="int"></constructor-arg>  
+		<constructor-arg value="Bharath"></constructor-arg>  
+	</bean>  
+  
+  	<bean id="e" class="depInjconstructor.Employee" parent="e2">
+  		<constructor-arg ref="a2"></constructor-arg> 
+  	</bean>
+  
+	<bean id="ans1" class="depInjconstructor.Answer">  
+		<constructor-arg value="1"></constructor-arg>  
+		<constructor-arg value="Java is a programming language"></constructor-arg>  
+		<constructor-arg value="John"></constructor-arg>  
+	</bean>  
+	  
+	<bean id="ans2" class="depInjconstructor.Answer">  
+		<constructor-arg value="2"></constructor-arg>  
+		<constructor-arg value="Java is a Platform"></constructor-arg>  
+		<constructor-arg value="Ravi"></constructor-arg>  
+	</bean>  
+	  
+	<bean id="q" class="depInjconstructor.Question">  
+		<constructor-arg value="111"></constructor-arg>  
+		<constructor-arg value="What is java?"></constructor-arg>  
+		<!-- <constructor-arg>  
+			<list>  
+				<ref bean="ans1"/>  
+				<ref bean="ans2"/>  
+			</list>  
+		</constructor-arg> -->  
+		<constructor-arg>
+			<!-- <map>  
+				<entry key-ref="answer1" value-ref="user1"></entry>  
+				<entry key-ref="answer2" value-ref="user2"></entry>  
+			</map> --> 
+			<map>  
+				<entry key="Java is a Programming Language"  value="Ajay Kumar"></entry>  
+				<entry key="Java is a Platform" value="John Smith"></entry>  
+				<entry key="Java is an Island" value="Raj Kumar"></entry>  
+			</map>  
+		</constructor-arg>  
+	</bean>  
+  
+</beans>   
